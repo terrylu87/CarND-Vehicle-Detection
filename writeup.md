@@ -111,18 +111,18 @@ Here's a [link to my video result](./output_videos/project_video_out.mp4)
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-Instead of record hot windows, I directly recorded the result heatmap in the last 10 frames of the video.  I then sum the heatmap of those frames, thresholded that summed heat map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
+Instead of record hot windows, I directly recorded the result heatmap in the last 10 frames of the video.  I then sum the heatmap of those frames, thresholded that summed heat map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap, then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+Here's an example result showing the heatmap from one frame, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on this frame of video:
 
-### Here are ten frames and their corresponding heatmaps:
+### Here are one frames and it's corresponding heatmaps:
 
 ![alt text][image7]
 
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all ten frames:
+### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from this frame:
 ![alt text][image8]
 
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
+### Here the resulting bounding boxes are drawn onto the frame:
 ![alt text][image9]
 
 
