@@ -57,18 +57,30 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
 I tried 'RGB', 'HSV' and 'YCrCb' color space. The testing result shows the 'YCrCb' produced the best accuracy.
-I also tried to use one channel and 'all' channels hog features. The one channel result in 95.4% test accuracy. And the all 3 channel features get over 98% accuracy. 
-I tuned parameters like the orientations and pixels_per_cell, but the accuracy doesn't changed that much.
-So my final parameter is following:
-color_space = 'YCrCb'
-orient = 9  # HOG orientations
-pix_per_cell = 8 # HOG pixels per cell
-cell_per_block = 2 # HOG cells per block
-hog_channel = 'ALL'
-spatial_size = (16, 16) # Spatial binning dimensions
-hist_bins = 16    # Number of histogram bins
-spatial_feat = True # Spatial features on
-hist_feat = True # Histogram features on
+I also tried to use one channel and 'all' channels hog features. The one channel result in 95.4% test accuracy. And the all 3 channel features get over 98% accuracy.   
+
+I tuned parameters like the orientations and pixels_per_cell, but the accuracy doesn't changed that much.  
+
+So my final parameter is following:  
+
+color_space = 'YCrCb'  
+
+orient = 9  # HOG orientations  
+
+pix_per_cell = 8 # HOG pixels per cell  
+
+cell_per_block = 2 # HOG cells per block  
+
+hog_channel = 'ALL'  
+
+spatial_size = (16, 16) # Spatial binning dimensions  
+
+hist_bins = 16    # Number of histogram bins  
+
+spatial_feat = True # Spatial features on  
+
+hist_feat = True # Histogram features on  
+
 hog_feat = True # HOG features on
 
 
@@ -121,7 +133,10 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The classification part is raletively easy, I tried 3 sets of parameters to get 98.4% accuracy. But when I use this classifer in the test image, I found it still create many false positives. So I carefully tunning the parameters to get a resonable result on test images.
-But since those parameter is tunned for the specific test images. They do not work well on the continues video stream. The result is not stable throughout the project video, some false bounding box will come from nowhere. So I use the history information between frames to get a smoother result. 
-Tunning the parameters is not a fun job, the detector is very slow on my computer. So I take 6 clips of the project video, each of them represent a typical situation.  I tunned the threshold of the heatmap to get a balance between detection and false positives. When I get a nice result on those test video clips, I apply the detector on the whole project video. Some undesirable bounding box still pop up in some frames. I then tunned the threshold for those frames and get a raletively clean result. I run tunning and testing cicle at least 20 times to get a resonable result.
+The classification part is raletively easy, I tried 3 sets of parameters to get 98.4% accuracy. But when I use this classifer in the test image, I found it still create many false positives. So I carefully tunning the parameters to get a resonable result on test images.  
+
+But since those parameter is tunned for the specific test images. They do not work well on the continues video stream. The result is not stable throughout the project video, some false bounding box will come from nowhere. So I use the history information between frames to get a smoother result.   
+
+Tunning the parameters is not a fun job, the detector is very slow on my computer. So I take 6 clips of the project video, each of them represent a typical situation.  I tunned the threshold of the heatmap to get a balance between detection and false positives. When I get a nice result on those test video clips, I apply the detector on the whole project video. Some undesirable bounding box still pop up in some frames. I then tunned the threshold for those frames and get a raletively clean result. I run tunning-testing circle for at least 20 times to get a resonable result.  
+
 This painful searching process make me miss the yolov2, which I used for a detection project last year. The end-to-end network will do all the dirty job for you, and gives a much more promising result than the hand designed features. I'll try it in the future.
