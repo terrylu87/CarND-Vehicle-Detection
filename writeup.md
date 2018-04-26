@@ -57,7 +57,7 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
 I tried 'RGB', 'HSV' and 'YCrCb' color space. The testing result shows the 'YCrCb' produced the best accuracy.
-I also tried to use one channel and 'all' channels hog features. The one channel result in 95.4% test accuracy. And the all 3 channel features get over 98% accuracy.   
+I also tried to use one channel and 'all' channels hog features. The one channel result in 95.4% test accuracy. And the all 3 channel features get over 98% accuracy.
 
 I tuned parameters like the orientations and pixels_per_cell, but the accuracy doesn't changed that much.  
 
@@ -86,7 +86,10 @@ hog_feat = True # HOG features on
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I use HOG feature along with Spatial and Histogram features. The default choice is linear SVM. And it already provided over 98% classification accuracy. So I just go on to the next step.
+I use HOG feature along with Spatial and Histogram features. The default choice is linear SVM. And it already provided over 98.4% classification accuracy.  
+
+The first reviewer suggested try more parameters to get 99% accuracy. I found it's not easy to do so by using liner svc. I tried rbf kernel can produce 99.04% test accuracy but is much slower than liner kernel. I trained another SGD classifier which achieve 98.5% accuracy, but still can not get over 99%. I then tried XGBoost. After 70 rounds of training , the classifier get 99.1% test accuracy. The XGBoost classifier is almost 2 times slower than the liner model. So I decide to use liner svc for the next step.
+
 
 ### Sliding Window Search
 
@@ -106,6 +109,8 @@ Ultimately I searched on three scales using YCrCb 3-channel HOG features plus sp
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
+I uploaded a wrong video in the first submition. A video of my first attempt, with many many many false positives. That's the main reason I had to resubmit the project. I doubble check the result this time.  
+
 Here's a [link to my video result](./output_videos/project_video_out.mp4)
 
 
