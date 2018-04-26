@@ -109,7 +109,7 @@ Ultimately I searched on three scales using YCrCb 3-channel HOG features plus sp
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-I uploaded a wrong video in the first submition. A video of my first attempt, with many many many false positives. That's the main reason I had to resubmit the project. I doubble check the result this time.  
+I uploaded a wrong video in the first submit. A video of my first attempt, with many many many false positives. That's the main reason I had to resubmit the project. I doubble check the result this time.  
 
 Here's a [link to my video result](./output_videos/project_video_out.mp4)
 
